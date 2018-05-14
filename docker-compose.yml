@@ -1,12 +1,15 @@
-newscoop:
-    extends:
-        file: docker/docker-newscoop.yml
-        service: newscoop
-    links:
-        - mysql
+version: "2"
+services:
+    newscoop:
+        extends:
+            file: docker/docker-newscoop.yml
+            service: newscoop
+        depends_on:
+            - mysql
 
-mysql:
-    extends:
-        file: docker/docker-newscoop.yml
-        service: mysql
-
+    mysql:
+        extends:
+            file: docker/docker-newscoop.yml
+            service: mysql
+volumes:
+    newscoop:

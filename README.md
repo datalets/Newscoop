@@ -49,6 +49,8 @@ docker-compose -f docker-compose-dev.yml build
 docker-compose -f docker-compose-dev.yml up
 ```
 
+In the database connection use server name: `mysql`, user and password: `root`
+
 ## Requirements
 
 - PHP version must be at least 5.4 on Debian and CentOS to run Newscoop properly. See [PHP bug][14].
