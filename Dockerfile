@@ -4,7 +4,7 @@ FROM ubuntu:14.04
 # Install dependencies
 RUN apt-get update && \
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-git \
+git openssh-client ca-certificates \
 apache2 \
 php5-cli php5-curl php5-mysql php5-gd php5-intl \
 libapache2-mod-php5 \
@@ -15,7 +15,7 @@ EXPOSE 80
 
 WORKDIR /usr/share/newscoop
 
-#VOLUME /var/www
+VOLUME /var/www/newscoop
 
 # copy virtual host config and source code
 ADD docker/newscoop.conf /etc/apache2/sites-available/newscoop.conf

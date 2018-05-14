@@ -1,14 +1,17 @@
-newscoop:
-    extends:
-        file: docker/docker-newscoop.yml
-        service: newscoop
-    links:
-        - mysql
-    environment:
-        - APPLICATION_ENVIRONMENT=dev
+version: "2"
+services:
+    newscoop:
+        extends:
+            file: docker/docker-newscoop.yml
+            service: newscoop
+        links:
+            - mysql
+        environment:
+            - APPLICATION_ENVIRONMENT=dev
 
-mysql:
-    extends:
-        file: docker/docker-newscoop.yml
-        service: mysql
-
+    mysql:
+        extends:
+            file: docker/docker-newscoop.yml
+            service: mysql
+volumes:
+    newscoop:
