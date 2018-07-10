@@ -11,6 +11,12 @@ if [ ! "$(ls -A $DATA_DIR)" ]; then
     exit 0
 fi
 
+# configure database
+SQL_MODE_OPTIONS="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+echo "[mysqld]" > /etc/mysql/conf.d/relax.cnf
+echo "sql-mode=$SQL_MODE_OPTIONS" >> /etc/mysql/conf.d/relax.cnf
+mysql -h mysql -u root -proot -e "SET GLOBAL sql_mode='$SQL_MODE_OPTIONS'"
+
 # import database
 if [ -s $DATA_DIR/database.sql ] ; then
     DUMP="$DATA_DIR/database.sql"
@@ -74,4 +80,3 @@ php $WWW_DIR/upgrade.php
 # Remove files which indicate not yet installed
 rm $WWW_DIR/conf/upgrading.php
 rm $WWW_DIR/conf/installation.php
-
